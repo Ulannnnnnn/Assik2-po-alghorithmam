@@ -7,7 +7,7 @@ public class MaxHeap {
     private int size;
     private int capacity;
 
-    // ✅ Конструктор с заданной ёмкостью
+    // Конструктор с заданной ёмкостью
     public MaxHeap(int capacity) {
         this.capacity = capacity;
         this.size = 0;
