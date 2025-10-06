@@ -27,14 +27,14 @@ public class BenchmarkRunner {
                 writer.write(String.format("%d,%d,%d\n", n, insertTime, extractTime));
             }
 
-            System.out.println("\n✅ Results saved to: " + outputFile);
+            System.out.println("\n Results saved to: " + outputFile);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // ⏱ Тест вставки
+    //  Тест вставки
     private static long testInsertPerformance(int n) {
         Random random = new Random();
         MaxHeap heap = new MaxHeap(n);
@@ -48,7 +48,7 @@ public class BenchmarkRunner {
         return end - start;
     }
 
-    // ⏱ Тест извлечения
+    //  Тест извлечения
     private static long testExtractPerformance(int n) {
         Random random = new Random();
         int[] arr = random.ints(n, 0, Integer.MAX_VALUE).toArray();
