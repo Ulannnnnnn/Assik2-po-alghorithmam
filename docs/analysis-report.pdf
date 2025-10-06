@@ -1,6 +1,6 @@
 
 
-# Partner Algorithm Analysis — MinHeap (by Nursaya Amirman)
+# Partner Algorithm Analysis — MinHeap by Nursaya 
 
 ## 1. Overview
 
@@ -106,5 +106,6 @@ While there are minor optimization opportunities in merging and recursion handli
 
 In comparison, my MaxHeap shows stronger raw performance but is less flexible.
 Together, these two implementations complement each other well — illustrating both orientations of the heap structure and allowing direct complexity comparison between them.
+
 
 
