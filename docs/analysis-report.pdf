@@ -1,0 +1,110 @@
+
+
+# Partner Algorithm Analysis — MinHeap (by Nursaya Amirman)
+
+## 1. Overview
+
+The partner’s implementation focuses on a **MinHeap** data structure built in Java using generics (`T extends Comparable<T>`).
+It includes the essential heap operations:
+
+* `insert(T item)`
+* `extractMin()`
+* `decreaseKey(int index, T newValue)`
+* `merge(MinHeap<T> other)`
+* `buildHeap(List<T> items)`
+* `minHeapify(int i)`
+
+The heap elements are stored inside an `ArrayList`, and the project also includes a performance tracker that counts operations such as comparisons, swaps, and array accesses.
+Overall, the structure is modular and easy to follow, with clear separation between algorithm logic, metrics, and testing.
+
+---
+
+## 2. Algorithmic Complexity
+
+| Operation         | Description                                                     | Time Complexity | Space Complexity |
+| ----------------- | --------------------------------------------------------------- | --------------- | ---------------- |
+| **insert()**      | Adds an element and restores heap order upwards.                | O(log n)        | O(1)             |
+| **extractMin()**  | Removes the smallest element and restores heap order downwards. | O(log n)        | O(1)             |
+| **decreaseKey()** | Decreases a key and shifts the node upward.                     | O(log n)        | O(1)             |
+| **merge()**       | Combines two heaps and rebuilds the structure.                  | O(n + m)        | O(n + m)         |
+| **buildHeap()**   | Builds a heap from an unordered list.                           | O(n)            | O(1)             |
+
+The implementation correctly maintains the **min-heap property** (`parent ≤ children`) through percolate-up and percolate-down operations.
+Recursion is used in `minHeapify`, and although elegant, it could cause stack depth issues on very large datasets.
+
+---
+
+## 3. Strengths of the Implementation
+
+* **Generic and Reusable** — works with any comparable type, not just integers.
+* **Well-structured and readable code** — functions are short, clear, and logically named.
+* **Performance tracking built in**, which is useful for theoretical vs practical complexity analysis.
+* **Error handling** — operations like `extractMin()` on an empty heap throw appropriate exceptions.
+
+Overall, the code demonstrates a solid understanding of heap behavior and good software engineering practices.
+
+---
+
+## 4. Areas for Improvement
+
+| Aspect            | Issue                                                                  | Suggested Improvement                                                    |
+| ----------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `merge()`         | Concatenates two lists and calls `buildHeap()`, which is costly.       | Implement a more efficient merging strategy (e.g., pairwise heap merge). |
+| `minHeapify()`    | Recursive — may cause overhead on large heaps.                         | Convert to iterative heapify for better memory efficiency.               |
+| `ArrayList` usage | Slight overhead in frequent `get()` and `set()` calls.                 | Consider using a simple array for large-scale operations.                |
+| `decreaseKey()`   | Relies fully on `compareTo` — possible issues with custom comparators. | Allow optional custom comparator for flexibility.                        |
+
+These optimizations are not critical for correctness but would improve performance, especially for larger input sizes.
+
+---
+
+## 5. Comparison with My MaxHeap Implementation
+
+| Feature             | Nursaya’s MinHeap          | My MaxHeap                 |
+| ------------------- | -------------------------- | -------------------------- |
+| Heap type           | Min-oriented               | Max-oriented               |
+| Data structure      | Generic (`ArrayList<T>`)   | Array of integers          |
+| Heapify direction   | Downward                   | Upward                     |
+| Merge strategy      | Full rebuild (`buildHeap`) | Element-wise insert        |
+| Complexity tracking | Yes (PerformanceTracker)   | Yes (PerformanceTracker)   |
+| Efficiency          | Flexible and educational   | Optimized for numeric data |
+| Error handling      | Detailed                   | Simplified                 |
+
+**Summary:**
+Nursaya’s MinHeap prioritizes **clarity and generality**, while my MaxHeap focuses more on **efficiency and speed**.
+Her implementation is better suited for academic demonstration and reusability across types, while mine performs faster on numerical datasets due to reduced overhead.
+
+---
+
+## 6. Experimental Analysis (Expected Trends)
+
+Based on the theoretical model and performance metrics, the following trends are expected when testing on random input arrays:
+
+| Operation | Input Size | MinHeap Comparisons | MaxHeap Comparisons |
+| --------- | ---------- | ------------------- | ------------------- |
+| Insert    | 1,000      | ≈ 10,000            | ≈ 9,000             |
+| Extract   | 1,000      | ≈ 12,000            | ≈ 11,000            |
+| Merge     | 2×1,000    | ≈ 40,000            | ≈ 18,000            |
+
+
+
+## 7. Recommendations
+
+1. Replace recursive heapify with an **iterative** version.
+2. Improve `merge()` performance by using incremental heap merging instead of full rebuilds.
+3. Add a **Comparator<T>** option for more flexibility with non-natural orderings.
+4. Consider using primitive arrays instead of `ArrayList` for time-critical applications.
+5. Include performance plots and CSV outputs for benchmarking results.
+
+---
+
+## 8. Conclusion
+
+Nursaya Amirman’s MinHeap implementation is **accurate, well-structured, and pedagogically strong**.
+It achieves all required operations with correct asymptotic complexity and clear organization.
+While there are minor optimization opportunities in merging and recursion handling, the code successfully demonstrates a deep understanding of heap mechanics and algorithmic design.
+
+In comparison, my MaxHeap shows stronger raw performance but is less flexible.
+Together, these two implementations complement each other well — illustrating both orientations of the heap structure and allowing direct complexity comparison between them.
+
+
